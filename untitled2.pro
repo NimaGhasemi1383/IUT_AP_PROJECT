@@ -12,8 +12,10 @@ SOURCES += \
     MainWindow.cpp \
     addproject.cpp \
     addteam.cpp \
+    deleteproject.cpp \
     deleteteam.cpp \
     editorg.cpp \
+    editproject.cpp \
     editteam.cpp \
     forgotpassword.cpp \
     inorg.cpp \
@@ -30,8 +32,10 @@ HEADERS += \
     MainWindow.h \
     addproject.h \
     addteam.h \
+    deleteproject.h \
     deleteteam.h \
     editorg.h \
+    editproject.h \
     editteam.h \
     forgotpassword.h \
     inorg.h \
@@ -47,8 +51,10 @@ FORMS += \
     MainWindow.ui \
     addproject.ui \
     addteam.ui \
+    deleteproject.ui \
     deleteteam.ui \
     editorg.ui \
+    editproject.ui \
     editteam.ui \
     forgotpassword.ui \
     inorg.ui \

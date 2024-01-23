@@ -23,6 +23,13 @@ private slots:
 
     void projectui_btn_clicked();
 
+    void on_pushButton_remove_clicked();
+
+    void DeleteItem(QString);
+
+    void on_pushButton_edit_clicked();
+
+    void EditItem(QString , QString);
 
 private:
     Ui::teamUi *ui;

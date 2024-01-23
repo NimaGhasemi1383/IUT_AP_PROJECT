@@ -2,6 +2,9 @@
 #include "ui_teamui.h"
 #include "addproject.h"
 #include "projectui.h"
+#include "deleteproject.h"
+#include "editproject.h"
+#include <QMessageBox>
 #define ORG ":/Login/Login19.png"
 
 teamUi::teamUi(QWidget *parent)
@@ -71,5 +74,55 @@ void teamUi::projectui_btn_clicked()
 {
     ProjectUi *projectui_widget = new ProjectUi();
     projectui_widget->show();
+}
+
+
+void teamUi::on_pushButton_remove_clicked()
+{
+    deleteProject * project_widget2 = new deleteProject();
+    project_widget2->show();
+
+    connect(project_widget2,SIGNAL(ItemDeleted(QString)),this,SLOT(DeleteItem(QString)));
+}
+
+void teamUi::DeleteItem(QString item2)
+{
+    for(int i = 0; i < 100; i++)
+    {
+        if(add_project[i]->text() == item2)
+        {
+            delete(add_project[i]);
+            for(int j = i + 1; j < 100 ; j++)
+            {
+                if(add_project[j]->x() > 170)
+                {
+                    add_project[j]->move(add_project[j]->x() - 100, add_project[j]->y());
+                }
+                else
+                {
+                    add_project[j]->move(640, add_project[j]->y() - 40);
+                }
+            }
+            return;
+        }
+    }
+    QMessageBox::critical(this,"Error!","There isn't any project with this name.");
+}
+
+
+void teamUi::on_pushButton_edit_clicked()
+{
+    editProject *edit_widget = new editProject();
+    edit_widget->show();
+    connect(edit_widget,SIGNAL(ItemEdited(QString,QString)),this,SLOT(EditItem(QString,QString)));
+}
+
+void teamUi::EditItem(QString item1, QString item2)
+{
+    for (int i=0 ; i<100 ; i++){
+        if(item1 == add_project[i]->text()){
+            add_project[i]->setText(item2);
+        }
+    }
 }
 
