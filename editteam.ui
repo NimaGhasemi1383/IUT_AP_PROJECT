@@ -27,7 +27,7 @@
 font: 700 9pt &quot;Segoe UI&quot;;</string>
    </property>
    <property name="text">
-    <string>Enter The Past Name Of Organization</string>
+    <string>Enter The Past Name Of Team</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_ok">
@@ -79,7 +79,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
    </property>
    <property name="text">
-    <string>Enter The Next Name Of Organization</string>
+    <string>Enter The Next Name Of Team</string>
    </property>
   </widget>
  </widget>

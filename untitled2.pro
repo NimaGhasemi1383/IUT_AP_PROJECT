@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     MainWindow.cpp \
+    addproject.cpp \
     addteam.cpp \
     deleteteam.cpp \
     editorg.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.h \
+    addproject.h \
     addteam.h \
     deleteteam.h \
     editorg.h \
@@ -43,6 +45,7 @@ HEADERS += \
 
 FORMS += \
     MainWindow.ui \
+    addproject.ui \
     addteam.ui \
     deleteteam.ui \
     editorg.ui \

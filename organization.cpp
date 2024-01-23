@@ -100,6 +100,7 @@ void Organization::DeleteItem(QString item2)
             }
             return;
         }
+
     }
     QMessageBox::critical(this,"Error!","There isn't any organization with this name.");
 }

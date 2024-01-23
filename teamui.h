@@ -2,6 +2,7 @@
 #define TEAMUI_H
 
 #include <QWidget>
+#include <QPushButton>
 
 namespace Ui {
 class teamUi;
@@ -15,8 +16,20 @@ public:
     explicit teamUi(QWidget *parent = nullptr);
     ~teamUi();
 
+private slots:
+    void on_pushButton_add_clicked();
+
+    void AddItem(QString);
+
+    void projectui_btn_clicked();
+
+
 private:
     Ui::teamUi *ui;
+    QPushButton **add_project;
+    int num = 0;
+    int _move = 165;
+    int _move2 = 90;
 };
 
 #endif // TEAMUI_H
