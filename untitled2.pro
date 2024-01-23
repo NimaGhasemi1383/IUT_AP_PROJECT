@@ -13,6 +13,7 @@ SOURCES += \
     addteam.cpp \
     deleteteam.cpp \
     editorg.cpp \
+    editteam.cpp \
     forgotpassword.cpp \
     inorg.cpp \
     main.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     addteam.h \
     deleteteam.h \
     editorg.h \
+    editteam.h \
     forgotpassword.h \
     inorg.h \
     organization.h \
@@ -44,6 +46,7 @@ FORMS += \
     addteam.ui \
     deleteteam.ui \
     editorg.ui \
+    editteam.ui \
     forgotpassword.ui \
     inorg.ui \
     organization.ui \

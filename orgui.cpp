@@ -3,6 +3,9 @@
 #include "addteam.h"
 #include <QPixmap>
 #include "teamui.h"
+#include "deleteteam.h"
+#include "editteam.h"
+#include <QMessageBox>
 #define ORG ":/Login/Login19.png"
 
 OrgUi::OrgUi(QWidget *parent)
@@ -72,3 +75,52 @@ void OrgUi::teamui_btn_2_clicked()
     teamUi *teamui_widget = new teamUi();
     teamui_widget->show();
 }
+
+void OrgUi::on_pushButton_remove_clicked()
+{
+    DeleteTeam * team_widget2 = new DeleteTeam();
+    team_widget2->show();
+
+    connect(team_widget2,SIGNAL(ItemDeleted(QString)),this,SLOT(DeleteItem(QString)));
+}
+
+void OrgUi::DeleteItem(QString item2)
+{
+    for(int i = 0; i < 100; i++)
+    {
+        if(add_team[i]->text() == item2)
+        {
+            delete(add_team[i]);
+            for(int j = i + 1; j < 100 ; j++)
+            {
+                if(add_team[j]->x() > 170)
+                {
+                    add_team[j]->move(add_team[j]->x() - 100, add_team[j]->y());
+                }
+                else
+                {
+                    add_team[j]->move(640, add_team[j]->y() - 40);
+                }
+            }
+            return;
+        }
+    }
+    QMessageBox::critical(this,"Error!","There isn't any team with this name.");
+}
+
+void OrgUi::EditItem(QString item1, QString item2)
+{
+    for (int i=0 ; i<100 ; i++){
+        if(item1 == add_team[i]->text()){
+            add_team[i]->setText(item2);
+        }
+    }
+}
+
+void OrgUi::on_pushButton_edit_2_clicked()
+{
+    EditTeam *edit_widget = new EditTeam();
+    edit_widget->show();
+    connect(edit_widget,SIGNAL(ItemEdited(QString,QString)),this,SLOT(EditItem(QString,QString)));
+}
+
