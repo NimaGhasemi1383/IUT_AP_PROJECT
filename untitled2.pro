@@ -12,6 +12,7 @@ SOURCES += \
     MainWindow.cpp \
     addperson.cpp \
     addproject.cpp \
+    addtask.cpp \
     addteam.cpp \
     deleteperson.cpp \
     deleteproject.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     MainWindow.h \
     addperson.h \
     addproject.h \
+    addtask.h \
     addteam.h \
     deleteperson.h \
     deleteproject.h \
@@ -59,6 +61,7 @@ FORMS += \
     MainWindow.ui \
     addperson.ui \
     addproject.ui \
+    addtask.ui \
     addteam.ui \
     deleteperson.ui \
     deleteproject.ui \

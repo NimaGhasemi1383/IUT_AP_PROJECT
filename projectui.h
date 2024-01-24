@@ -2,6 +2,7 @@
 #define PROJECTUI_H
 
 #include <QWidget>
+#include <QMessageBox>
 
 namespace Ui {
 class ProjectUi;
@@ -15,8 +16,17 @@ public:
     explicit ProjectUi(QWidget *parent = nullptr);
     ~ProjectUi();
 
+private slots:
+    void on_pushButton_add_clicked();
+
+    void AddItem(QString,QString,QString);
+
 private:
     Ui::ProjectUi *ui;
+    QPushButton **add_task;
+    int num = 0;
+    int _move = 165;
+    int _move2 = 90;
 };
 
 #endif // PROJECTUI_H
