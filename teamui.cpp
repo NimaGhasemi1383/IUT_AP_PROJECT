@@ -5,6 +5,7 @@
 #include "deleteproject.h"
 #include "editproject.h"
 #include <QMessageBox>
+#include "personui.h"
 #define ORG ":/Login/Login19.png"
 
 teamUi::teamUi(QWidget *parent)
@@ -124,5 +125,12 @@ void teamUi::EditItem(QString item1, QString item2)
             add_project[i]->setText(item2);
         }
     }
+}
+
+
+void teamUi::on_pushButton_clicked()
+{
+    personUi *person_widget = new personUi();
+    person_widget->show();
 }
 

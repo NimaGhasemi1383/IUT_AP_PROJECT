@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     MainWindow.cpp \
+    addperson.cpp \
     addproject.cpp \
     addteam.cpp \
     deleteproject.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     organization.cpp \
     orgui.cpp \
     outorg.cpp \
+    personui.cpp \
     projectui.cpp \
     signup.cpp \
     teamui.cpp \
@@ -30,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.h \
+    addperson.h \
     addproject.h \
     addteam.h \
     deleteproject.h \
@@ -42,6 +45,7 @@ HEADERS += \
     organization.h \
     orgui.h \
     outorg.h \
+    personui.h \
     projectui.h \
     signup.h \
     teamui.h \
@@ -49,6 +53,7 @@ HEADERS += \
 
 FORMS += \
     MainWindow.ui \
+    addperson.ui \
     addproject.ui \
     addteam.ui \
     deleteproject.ui \
@@ -61,6 +66,7 @@ FORMS += \
     organization.ui \
     orgui.ui \
     outorg.ui \
+    personui.ui \
     projectui.ui \
     signup.ui \
     teamui.ui

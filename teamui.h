@@ -31,6 +31,8 @@ private slots:
 
     void EditItem(QString , QString);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::teamUi *ui;
     QPushButton **add_project;
