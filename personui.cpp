@@ -90,11 +90,11 @@ void personUi::DeleteItem(QString item2)
             {
                 if(add_person[j]->x() > 170)
                 {
-                    add_person[j]->move(add_person[j]->x() - 100, add_person[j]->y());
+                    add_person[j]->move(add_person[j]->x() - 280, add_person[j]->y());
                 }
                 else
                 {
-                    add_person[j]->move(640, add_person[j]->y() - 40);
+                    add_person[j]->move(445, add_person[j]->y() - 40);
                 }
             }
             return;

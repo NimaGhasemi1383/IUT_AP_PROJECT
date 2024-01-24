@@ -16,6 +16,7 @@ SOURCES += \
     addteam.cpp \
     deleteperson.cpp \
     deleteproject.cpp \
+    deletetask.cpp \
     deleteteam.cpp \
     editorg.cpp \
     editperson.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     addteam.h \
     deleteperson.h \
     deleteproject.h \
+    deletetask.h \
     deleteteam.h \
     editorg.h \
     editperson.h \
@@ -65,6 +67,7 @@ FORMS += \
     addteam.ui \
     deleteperson.ui \
     deleteproject.ui \
+    deletetask.ui \
     deleteteam.ui \
     editorg.ui \
     editperson.ui \

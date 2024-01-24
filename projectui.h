@@ -21,6 +21,10 @@ private slots:
 
     void AddItem(QString,QString,QString);
 
+    void DeleteItem(QString);
+
+    void on_pushButton_remove_clicked();
+
 private:
     Ui::ProjectUi *ui;
     QPushButton **add_task;

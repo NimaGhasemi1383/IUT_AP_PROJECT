@@ -1,6 +1,7 @@
 #include "projectui.h"
 #include "ui_projectui.h"
 #include "addtask.h"
+#include "deletetask.h"
 #define ORG ":/Login/Login19.png"
 
 ProjectUi::ProjectUi(QWidget *parent)
@@ -64,5 +65,35 @@ void ProjectUi::on_pushButton_add_clicked()
 void ProjectUi::AddItem(QString item , QString item2 , QString item3)
 {
     add_task[num -1]->setText("Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3);
+}
+
+
+void ProjectUi::on_pushButton_remove_clicked()
+{
+    deleteTask * task_widget2 = new deleteTask();
+    task_widget2->show();
+
+    connect(task_widget2,SIGNAL(ItemDeleted(QString)),this,SLOT(DeleteItem(QString)));
+}
+
+void ProjectUi::DeleteItem(QString item2)
+{
+    for(int i = 0; i < 100; i++)
+    {
+        if(add_task[i]->text().contains(item2))
+        {
+            delete(add_task[i]);
+            for(int j = i + 1; j < 100 ; j++)
+            {
+                if(add_task[j]->x() < 170)
+                {
+                    add_task[j]->move(165, add_task[j]->y() - 40);
+                }
+            }
+            return;
+        }
+
+    }
+    QMessageBox::critical(this,"Error!","There isn't any task with this name.");
 }
 
