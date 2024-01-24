@@ -21,6 +21,9 @@ private slots:
 
     void AddItem(QString,QString);
 
+    void on_pushButton_remove_clicked();
+
+    void DeleteItem(QString);
 
 private:
     Ui::personUi *ui;

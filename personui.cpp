@@ -1,6 +1,8 @@
 #include "personui.h"
 #include "ui_personui.h"
 #include "addperson.h"
+#include "deleteperson.h"
+#include <QMessageBox>
 #define ORG ":/Login/Login19.png"
 
 personUi::personUi(QWidget *parent)
@@ -66,4 +68,37 @@ void personUi::AddItem(QString item , QString item2)
 }
 
 
+
+
+void personUi::on_pushButton_remove_clicked()
+{
+    deletePerson * person_widget2 = new deletePerson();
+    person_widget2->show();
+
+    connect(person_widget2,SIGNAL(ItemDeleted(QString)),this,SLOT(DeleteItem(QString)));
+}
+
+void personUi::DeleteItem(QString item2)
+{
+    for(int i = 0; i < 100; i++)
+    {
+        if(add_person[i]->text().contains(item2))
+        {
+            delete(add_person[i]);
+            for(int j = i + 1; j < 100 ; j++)
+            {
+                if(add_person[j]->x() > 170)
+                {
+                    add_person[j]->move(add_person[j]->x() - 100, add_person[j]->y());
+                }
+                else
+                {
+                    add_person[j]->move(640, add_person[j]->y() - 40);
+                }
+            }
+            return;
+        }
+    }
+    QMessageBox::critical(this,"Error!","There isn't any person with this name.");
+}
 
