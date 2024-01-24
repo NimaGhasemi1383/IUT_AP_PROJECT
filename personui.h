@@ -25,6 +25,10 @@ private slots:
 
     void DeleteItem(QString);
 
+    void on_pushButton_edit_clicked();
+
+    void EditItem(QString , QString);
+
 private:
     Ui::personUi *ui;
     QPushButton **add_person;

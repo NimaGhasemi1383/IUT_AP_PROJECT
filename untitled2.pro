@@ -17,6 +17,7 @@ SOURCES += \
     deleteproject.cpp \
     deleteteam.cpp \
     editorg.cpp \
+    editperson.cpp \
     editproject.cpp \
     editteam.cpp \
     forgotpassword.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     deleteproject.h \
     deleteteam.h \
     editorg.h \
+    editperson.h \
     editproject.h \
     editteam.h \
     forgotpassword.h \
@@ -62,6 +64,7 @@ FORMS += \
     deleteproject.ui \
     deleteteam.ui \
     editorg.ui \
+    editperson.ui \
     editproject.ui \
     editteam.ui \
     forgotpassword.ui \

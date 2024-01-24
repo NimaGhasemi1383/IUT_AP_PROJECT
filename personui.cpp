@@ -3,6 +3,7 @@
 #include "addperson.h"
 #include "deleteperson.h"
 #include <QMessageBox>
+#include "editperson.h"
 #define ORG ":/Login/Login19.png"
 
 personUi::personUi(QWidget *parent)
@@ -100,5 +101,22 @@ void personUi::DeleteItem(QString item2)
         }
     }
     QMessageBox::critical(this,"Error!","There isn't any person with this name.");
+}
+
+
+void personUi::on_pushButton_edit_clicked()
+{
+    editPerson *edit_widget = new editPerson();
+    edit_widget->show();
+    connect(edit_widget,SIGNAL(ItemEdited(QString,QString)),this,SLOT(EditItem(QString,QString)));
+}
+
+void personUi::EditItem(QString item1, QString item2)
+{
+    for (int i=0 ; i<100 ; i++){
+        if(add_person[i]->text().contains(item1)){
+            add_person[i]->setText("Name: " + item1 + "          Role: " + item2);
+        }
+    }
 }
 
