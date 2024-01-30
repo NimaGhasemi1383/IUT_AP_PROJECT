@@ -6,6 +6,8 @@
 #include "deleteteam.h"
 #include "editteam.h"
 #include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
 #define ORG ":/Login/Login19.png"
 
 OrgUi::OrgUi(QWidget *parent)
@@ -22,6 +24,40 @@ OrgUi::OrgUi(QWidget *parent)
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
+    QFile FOrg("C:/Qt/untitled2/teams.txt");
+    FOrg.open(QIODevice::ReadOnly | QFile::Text);
+    QTextStream in(&FOrg);
+    while (!in.atEnd())
+    {
+        QPushButton *add_team = new QPushButton(this);
+
+        add_team->setText(in.readLine());
+
+        add_team->setStyleSheet("QPushButton{"
+                               "font-size: 10px;"
+                               "color: Black;"
+                               "border-style: solid;"
+                               "border-width:2px;"
+                               "border-radius: 10px;"
+                               "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
+                               "border-color: black;"
+                               "font: bold 15px}");
+
+        team.append(add_team);
+
+        connect(add_team,SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
+
+        add_team->resize(92,36);
+        add_team->move(_move,_move2);
+        add_team->show();
+        _move += 100;
+        if (_move >=700){
+            _move = 165;
+            _move2 += 40;
+        }
+    }
+    FOrg.close();
 }
 
 OrgUi::~OrgUi()
@@ -35,28 +71,25 @@ void OrgUi::on_pushButton_add_2_clicked()
     team_widget->show();
     //QWidget::close();
 
-    if(num == 0)
-    {
-        add_team = new QPushButton*[100];
-        for(int i = 0; i < 100; i++)
-        {
-            add_team[i] = new QPushButton(this);
-            add_team[i]->setStyleSheet("QPushButton{"
-                                      "font-size: 10px;"
-                                      "color: Black;"
-                                      "border-style: solid;"
-                                      "border-width:2px;"
-                                      "border-radius: 10px;"
-                                      "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                                      "border-color: black;"
-                                      "font: bold 15px}");
-        }
-    }
-    connect(add_team[num],SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
-    add_team[num]->resize(92,36);
-    add_team[num]->move(_move,_move2);
-    add_team[num]->show();
-    num++;
+    QPushButton* add_team = new QPushButton(this);
+
+    add_team->setStyleSheet("QPushButton{"
+                               "font-size: 10px;"
+                               "color: Black;"
+                               "border-style: solid;"
+                               "border-width:2px;"
+                               "border-radius: 10px;"
+                               "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
+                               "border-color: black;"
+                               "font: bold 15px}");
+
+    team.append(add_team);
+
+    connect(add_team,SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
+    add_team->resize(92,36);
+    add_team->move(_move,_move2);
+    add_team->show();
+
     _move += 100;
     if (_move >=700){
         _move = 165;
@@ -67,7 +100,13 @@ void OrgUi::on_pushButton_add_2_clicked()
 
 void OrgUi::AddItem(QString item)
 {
-    add_team[num -1]->setText(item);
+    team[team.size() -1]->setText(item);
+
+    QFile fOrg("C:/Qt/untitled2/teams.txt");
+    fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
+    QTextStream out(&fOrg);
+    out << item << "\n";
+    fOrg.close();
 }
 
 void OrgUi::teamui_btn_2_clicked()
@@ -86,33 +125,67 @@ void OrgUi::on_pushButton_remove_clicked()
 
 void OrgUi::DeleteItem(QString item2)
 {
-    for(int i = 0; i < 100; i++)
+    int test = 0;
+    for(int i = 0; i < team.size(); i++)
     {
-        if(add_team[i]->text() == item2)
+        if(team[i]->text() == item2)
         {
-            delete(add_team[i]);
-            for(int j = i + 1; j < 100 ; j++)
+            delete(team[i]);
+            for(int j = i + 1; j < team.size(); j++)
             {
-                if(add_team[j]->x() > 170)
+                if(team[j]->x() > 170)
                 {
-                    add_team[j]->move(add_team[j]->x() - 100, add_team[j]->y());
+                    team[j]->move(team[j]->x() - 100, team[j]->y());
                 }
                 else
                 {
-                    add_team[j]->move(640, add_team[j]->y() - 40);
+                    team[j]->move(640, team[j]->y() - 40);
                 }
             }
-            return;
+            test = 1;
+            team.erase(team.begin() + i);
+
+            _move += 100;
+            if (_move >=700){
+                _move = 165;
+                _move2 += 40;
+            }
+
         }
     }
-    QMessageBox::critical(this,"Error!","There isn't any team with this name.");
+    if(!test)
+        QMessageBox::critical(this,"Error!","There isn't any team with this name.");
+
+
+    QFile fOrg("C:/Qt/untitled2/teams.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i] == item2)
+        {
+            lines.removeAt(i);
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
 void OrgUi::EditItem(QString item1, QString item2)
 {
     for (int i=0 ; i<100 ; i++){
-        if(item1 == add_team[i]->text()){
-            add_team[i]->setText(item2);
+        if(item1 == team[i]->text()){
+            team[i]->setText(item2);
         }
     }
 }

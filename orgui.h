@@ -33,7 +33,7 @@ private slots:
 
 private:
     Ui::OrgUi *ui;
-    QPushButton **add_team;
+    QVector<QPushButton*> team;
     int num = 0;
     int _move = 165;
     int _move2 = 90;
