@@ -33,10 +33,10 @@ private slots:
 
 private:
     Ui::Organization *ui;
-    QPushButton **add_org;
-    int num = 0;
+    QVector<QPushButton*> org;
     int _move = 165;
     int _move2 = 90;
+    int n = 0;
 };
 
 #endif // ORGANIZATION_H

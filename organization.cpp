@@ -6,6 +6,8 @@
 #include "editorg.h"
 #include <QMessageBox>
 #include <QPixmap>
+#include <QFile>
+#include <QTextStream>
 #define ORG ":/Login/Login19.png"
 
 Organization::Organization(QWidget *parent)
@@ -22,6 +24,40 @@ Organization::Organization(QWidget *parent)
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
+    QFile FOrg("C:/Qt/untitled2/New Text Document.txt");
+    FOrg.open(QIODevice::ReadOnly | QFile::Text);
+    QTextStream in(&FOrg);
+    while (!in.atEnd())
+    {
+        QPushButton *add_org = new QPushButton(this);
+
+        add_org->setText(in.readLine());
+
+        add_org->setStyleSheet("QPushButton{"
+                               "font-size: 10px;"
+                               "color: Black;"
+                               "border-style: solid;"
+                               "border-width:2px;"
+                               "border-radius: 10px;"
+                               "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
+                               "border-color: black;"
+                               "font: bold 15px}");
+
+        org.append(add_org);
+
+        connect(add_org,SIGNAL(clicked()),this,SLOT(orgui_btn_clicked()));
+
+        add_org->resize(92,36);
+        add_org->move(_move,_move2);
+        add_org->show();
+        _move += 100;
+        if (_move >=700){
+            _move = 165;
+            _move2 += 40;
+        }
+    }
+    FOrg.close();
 }
 
 Organization::~Organization()
@@ -36,33 +72,31 @@ void Organization::on_pushButton_add_clicked()
     org_widget->show();
     //QWidget::close();
 
-    if(num == 0)
-    {
-        add_org = new QPushButton*[100];
-        for(int i = 0; i < 100; i++)
-        {
-            add_org[i] = new QPushButton(this);
-            add_org[i]->setStyleSheet("QPushButton{"
-                                   "font-size: 10px;"
-                                   "color: Black;"
-                                   "border-style: solid;"
-                                   "border-width:2px;"
-                                   "border-radius: 10px;"
-                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                                   "border-color: black;"
-                                   "font: bold 15px}");
-        }
-    }
-    connect(add_org[num],SIGNAL(clicked()),this,SLOT(orgui_btn_clicked()));
-    add_org[num]->resize(92,36);
-    add_org[num]->move(_move,_move2);
-    add_org[num]->show();
-    num++;
+    QPushButton *add_org = new QPushButton(this);
+
+    add_org->setStyleSheet("QPushButton{"
+                              "font-size: 10px;"
+                              "color: Black;"
+                              "border-style: solid;"
+                              "border-width:2px;"
+                              "border-radius: 10px;"
+                              "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
+                              "border-color: black;"
+                              "font: bold 15px}");
+
+    org.append(add_org);
+
+    connect(add_org,SIGNAL(clicked()),this,SLOT(orgui_btn_clicked()));
+
+    add_org->resize(92,36);
+    add_org->move(_move,_move2);
+    add_org->show();
     _move += 100;
     if (_move >=700){
         _move = 165;
         _move2 += 40;
     }
+
     connect(org_widget,SIGNAL(ItemAdded(QString)),this,SLOT(AddItem(QString)));
 }
 
@@ -77,32 +111,98 @@ void Organization::on_pushButton_remove_clicked()
 
 void Organization::AddItem(QString item)
 {
-    add_org[num -1]->setText(item);
+    org[org.size() - 1]->setText(item);
+    //n++;
+
+    QFile fOrg("C:/Qt/untitled2/New Text Document.txt");
+    fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
+    QTextStream out(&fOrg);
+    out << item << "\n";
+    fOrg.close();
 }
 
 void Organization::DeleteItem(QString item2)
 {
-    for(int i = 0; i < 100; i++)
+    int i = 0;
+    int test=0;
+    for(i = 0; i < org.size(); i++)
     {
-        if(add_org[i]->text() == item2)
+        if(org[i]->text() == item2)
         {
-            delete(add_org[i]);
-            for(int j = i + 1; j < 100 ; j++)
+            test=1;
+            delete(org[i]);
+            for(int j = i + 1; j < org.size(); j++)
             {
-                if(add_org[j]->x() > 170)
+                if(org[j]->x() > 170)
                 {
-                    add_org[j]->move(add_org[j]->x() - 100, add_org[j]->y());
+                    org[j]->move(org[j]->x() - 100, org[j]->y());
                 }
                 else
                 {
-                    add_org[j]->move(640, add_org[j]->y() - 40);
+                    org[j]->move(665, org[j]->y() - 40);
                 }
             }
-            return;
+             org.erase(org.begin()+i);
+            _move-=100;
+             if (_move >= 700){
+                 _move = 165;
+                 _move2 -= 40;
+             }
         }
-
     }
-    QMessageBox::critical(this,"Error!","There isn't any organization with this name.");
+    if (!test)
+    {
+        QMessageBox::critical(this,"Error!","There isn't any organization with this name.");
+    }
+
+
+    QFile fOrg("C:/Qt/untitled2/New Text Document.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i] == item2)
+        {
+            lines.removeAt(i);
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
+
+    // int k =0;
+    // for(int i = 0; i < org.size() + 2; i++)
+    // {
+    //     if(org[i]->text() == item2)
+    //     {
+    //         //org.remove(i);
+    //         delete(org[i]);
+    //         for(int j = i + 1; j < org.size(); j++)
+    //         {
+    //             if(org[j]->x() > 170)
+    //             {
+    //                 org[j]->move(org[j]->x() - 100, org[j]->y());
+    //             }
+    //             else
+    //             {
+    //                 org[j]->move(665, org[j]->y() - 40);
+    //             }
+    //         }
+    //         k++;
+    //         return;
+    //     }
+
+    // }
+    // QMessageBox::critical(this,"Error!","There isn't any organization with this name.");
 }
 
 void Organization::orgui_btn_clicked()
@@ -121,10 +221,33 @@ void Organization::on_pushButton_edit_clicked()
 
 void Organization::EditItem(QString item1, QString item2)
 {
-    for (int i=0 ; i<100 ; i++){
-        if(item1 == add_org[i]->text()){
-            add_org[i]->setText(item2);
+    for (int i=0 ; i < org.size() ; i++){
+        if(item1 == org[i]->text()){
+            org[i]->setText(item2);
         }
     }
+
+    QFile fOrg("C:/Qt/untitled2/New Text Document.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i] == item1)
+        {
+            lines[i] = item2;
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
