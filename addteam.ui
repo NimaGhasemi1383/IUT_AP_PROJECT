@@ -38,6 +38,9 @@
      <height>29</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>OpenHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Ok</string>
    </property>

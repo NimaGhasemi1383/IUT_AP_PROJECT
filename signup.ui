@@ -200,7 +200,7 @@
     </rect>
    </property>
    <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
+    <cursorShape>OpenHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>OK</string>

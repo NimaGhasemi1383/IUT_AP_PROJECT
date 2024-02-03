@@ -3,6 +3,8 @@
 #include "addperson.h"
 #include "deleteperson.h"
 #include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
 #include "editperson.h"
 #define ORG ":/Login/Login19.png"
 
@@ -20,6 +22,41 @@ personUi::personUi(QWidget *parent)
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
+    QFile FOrg("C:/Qt/untitled2/persons.txt");
+    FOrg.open(QIODevice::ReadOnly | QFile::Text);
+    QTextStream in(&FOrg);
+    while (!in.atEnd())
+    {
+        QPushButton *add_person = new QPushButton(this);
+
+        add_person->setText(in.readLine());
+
+        add_person->setStyleSheet("QPushButton{"
+                               "font-size: 10px;"
+                               "color: white;"
+                               "border-style: solid;"
+                               "border-width:2px;"
+                               "border-radius: 10px;"
+                               "background-color: black;"
+                               "border-color: yellow;"
+                               "font: bold 15px}");
+
+        person.append(add_person);
+
+        //connect(person_widget,SIGNAL(ItemAdded(QString,QString)),this,SLOT(AddItem(QString,QString)));
+
+        add_person->resize(270,30);
+        add_person->move(_move,_move2);
+        add_person->show();
+
+        _move += 280;
+        if (_move >=600){
+            _move = 165;
+            _move2 += 40;
+        }
+    }
+    FOrg.close();
 }
 
 personUi::~personUi()
@@ -65,6 +102,12 @@ void personUi::on_pushButton_add_clicked()
 void personUi::AddItem(QString item , QString item2)
 {
     person[person.size() -1]->setText("Name: " + item + "          Role: " + item2);
+
+    QFile fOrg("C:/Qt/untitled2/persons.txt");
+    fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
+    QTextStream out(&fOrg);
+    out << "Name: " + item + "          Role: " + item2 << "\n";
+    fOrg.close();
 }
 
 
