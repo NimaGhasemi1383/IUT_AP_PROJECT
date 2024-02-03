@@ -214,6 +214,7 @@ void teamUi::EditItem(QString item1, QString item2)
         }
     }
     fOrg.resize(0);
+    //herllo
     QTextStream out(&fOrg);
     foreach(const QString &line, lines)
     {
