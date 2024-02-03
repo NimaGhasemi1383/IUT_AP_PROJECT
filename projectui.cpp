@@ -176,5 +176,28 @@ void ProjectUi::EditItem(QString item1, QString item2 , QString item3)
             task[i]->setText("Name Of Task: " + item2 + "   Performer: " + item1 + "   Time: " + item3);
         }
     }
+
+    QFile fOrg("C:/Qt/untitled2/tasks.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i].contains(item1))
+        {
+            lines[i] = "Name Of Task: " + item2 + "   Performer: " + item1 + "   Time: " + item3;
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
