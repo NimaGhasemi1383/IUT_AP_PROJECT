@@ -183,6 +183,7 @@ void OrgUi::teamui_btn_2_clicked()
 {
     teamUi *teamui_widget = new teamUi();
     teamui_widget->show();
+    QWidget::close();
 }
 
 void OrgUi::on_pushButton_remove_clicked()
@@ -289,5 +290,13 @@ void OrgUi::on_pushButton_edit_2_clicked()
     EditTeam *edit_widget = new EditTeam();
     edit_widget->show();
     connect(edit_widget,SIGNAL(ItemEdited(QString,QString)),this,SLOT(EditItem(QString,QString)));
+}
+
+
+void OrgUi::on_pushButton_Back_clicked()
+{
+    Organization *s_in = new Organization();
+    s_in->show();
+    QWidget::close();
 }
 

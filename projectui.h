@@ -29,6 +29,8 @@ private slots:
 
      void EditItem(QString , QString , QString);
 
+    void on_pushButton_Back_clicked();
+
 private:
     Ui::ProjectUi *ui;
     QVector<QPushButton*>task;

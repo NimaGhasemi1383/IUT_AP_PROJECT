@@ -33,6 +33,8 @@ private slots:
 
     void on_pushButton_edit_2_clicked();
 
+    void on_pushButton_Back_clicked();
+
 private:
     Ui::OrgUi *ui;
     QVector<QPushButton*> team;

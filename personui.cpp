@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include "editperson.h"
+#include "teamui.h"
 #define ORG ":/Login/Login19.png"
 
 personUi::personUi(QWidget *parent)
@@ -220,5 +221,13 @@ void personUi::EditItem(QString item1, QString item2)
         out << line << "\n";
     }
     fOrg.close();
+}
+
+
+void personUi::on_pushButton_Back_clicked()
+{
+    teamUi *s_in = new teamUi();
+    s_in->show();
+    QWidget::close();
 }
 

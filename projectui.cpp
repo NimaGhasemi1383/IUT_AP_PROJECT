@@ -3,6 +3,7 @@
 #include "addtask.h"
 #include "deletetask.h"
 #include "edittask.h"
+#include "teamui.h"
 #include <QFile>
 #include <QTextStream>
 #define ORG ":/Login/Login19.png"
@@ -203,5 +204,13 @@ void ProjectUi::EditItem(QString item1, QString item2 , QString item3)
         out << line << "\n";
     }
     fOrg.close();
+}
+
+
+void ProjectUi::on_pushButton_Back_clicked()
+{
+    teamUi *s_in = new teamUi();
+    s_in->show();
+    QWidget::close();
 }
 

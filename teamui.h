@@ -33,6 +33,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_Back_clicked();
+
 private:
     Ui::teamUi *ui;
     //QPushButton **add_project;

@@ -8,6 +8,7 @@
 #include <QPixmap>
 #include <QFile>
 #include <QTextStream>
+#include "MainWindow.h"
 #define ORG ":/Login/Login19.png"
 
 Organization::Organization(QWidget *parent)
@@ -220,10 +221,11 @@ void Organization::orgui_btn_clicked()
     //if(golabi){
     OrgUi *org_widget = new OrgUi();
     org_widget->show();
+    QWidget::close();
         //orgui_widget->setWindowTitle(QString::number(n));
    // vec_org.append(org_widget);
    // vec_org[n]->show();
-    n++;
+   // n++;
     //orgui_widget->show();
     //setFocus();
     //n++;
@@ -268,5 +270,13 @@ void Organization::EditItem(QString item1, QString item2)
         out << line << "\n";
     }
     fOrg.close();
+}
+
+
+void Organization::on_pushButton_Back_clicked()
+{
+    MainWindow *s_in = new MainWindow();
+    s_in->show();
+    QWidget::close();
 }
 

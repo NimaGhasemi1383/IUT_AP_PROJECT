@@ -4,6 +4,7 @@
 #include "projectui.h"
 #include "deleteproject.h"
 #include "editproject.h"
+#include "orgui.h"
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
@@ -118,6 +119,7 @@ void teamUi::projectui_btn_clicked()
 {
     ProjectUi *projectui_widget = new ProjectUi();
     projectui_widget->show();
+    QWidget::close();
 }
 
 
@@ -232,5 +234,13 @@ void teamUi::on_pushButton_clicked()
 {
     personUi *person_widget = new personUi();
     person_widget->show();
+}
+
+
+void teamUi::on_pushButton_Back_clicked()
+{
+    OrgUi *s_in = new OrgUi();
+    s_in->show();
+    QWidget::close();
 }
 
