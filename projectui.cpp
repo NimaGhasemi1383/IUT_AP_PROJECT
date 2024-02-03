@@ -217,6 +217,21 @@ void ProjectUi::on_pushButton_Back_clicked()
 
 void ProjectUi::on_pushButton_Sort_clicked()
 {
+    QFile fOrg("tasks.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    fOrg.close();
 
+    std::sort(lines.begin(), lines.end(), [](QString a, QString b) { return a[14] < b[14]; });
+
+    for(int i = 0; i < task.size(); i++)
+    {
+        task[i]->setText(lines[i]);
+    }
 }
 
