@@ -1,16 +1,9 @@
 <RCC>
     <qresource prefix="/Login">
-        <file>Login2.jpg</file>
-        <file>Login3.jpg</file>
         <file>login4.png</file>
         <file>Login5.png</file>
-        <file>Login6.jpeg</file>
-        <file>Login7.png</file>
-        <file>Login8.png</file>
-        <file>Login9.png</file>
         <file>Login12.png</file>
         <file>Login11.png</file>
-        <file>Login13.png</file>
         <file>Login14.png</file>
         <file>Login15.png</file>
         <file>Login16.png</file>
@@ -23,12 +16,9 @@
         <file>User.txt</file>
         <file>Login23.png</file>
         <file>Login24.png</file>
-        <file>Login25.png</file>
-        <file>Login26.png</file>
-        <file>Login27.png</file>
-        <file>Login28.png</file>
         <file>Login29.png</file>
         <file>Login30.png</file>
         <file>Login31.jpg</file>
+        <file>Login2.jpg</file>
     </qresource>
 </RCC>
