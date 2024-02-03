@@ -8,6 +8,7 @@
 #include <QPixmap>
 #include <QFile>
 #include <QTextStream>
+#include <QVector>
 #include "MainWindow.h"
 #define ORG ":/Login/Login19.png"
 
@@ -278,5 +279,26 @@ void Organization::on_pushButton_Back_clicked()
     MainWindow *s_in = new MainWindow();
     s_in->show();
     QWidget::close();
+}
+
+
+void Organization::on_pushButton_Sort_clicked()
+{
+    QFile fOrg("organizations.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    fOrg.close();
+
+    std::sort(lines.begin(), lines.end(), [](QString a, QString b) { return a < b; });
+
+    for(int i = 0; i < org.size(); i++)
+    {
+        org[i]->setText(lines[i]);
+    }
 }
 
