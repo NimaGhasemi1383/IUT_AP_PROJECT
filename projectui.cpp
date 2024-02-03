@@ -2,6 +2,8 @@
 #include "ui_projectui.h"
 #include "addtask.h"
 #include "deletetask.h"
+#include <QFile>
+#include <QTextStream>
 #define ORG ":/Login/Login19.png"
 
 ProjectUi::ProjectUi(QWidget *parent)
@@ -18,6 +20,36 @@ ProjectUi::ProjectUi(QWidget *parent)
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
+    QFile FOrg("C:/Qt/untitled2/tasks.txt");
+    FOrg.open(QIODevice::ReadOnly | QFile::Text);
+    QTextStream in(&FOrg);
+    while (!in.atEnd())
+    {
+        QPushButton *add_task = new QPushButton(this);
+
+        add_task->setText(in.readLine());
+
+        add_task->setStyleSheet("QPushButton{"
+                               "font-size: 10px;"
+                               "color: white;"
+                               "border-style: solid;"
+                               "border-width:2px;"
+                               "border-radius: 10px;"
+                               "background-color: black;"
+                               "border-color: yellow;"
+                               "font: bold 15px}");
+
+        task.append(add_task);
+
+        //connect(add_task,SIGNAL(clicked()),this,SLOT(orgui_btn_clicked()));
+
+        add_task->resize(540,30);
+        add_task->move(_move,_move2);
+        add_task->show();
+        _move2 += 40;
+    }
+    FOrg.close();
 }
 
 ProjectUi::~ProjectUi()
@@ -62,6 +94,12 @@ void ProjectUi::on_pushButton_add_clicked()
 void ProjectUi::AddItem(QString item , QString item2 , QString item3)
 {
     task[task.size() -1]->setText("Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3);
+
+    QFile fOrg("C:/Qt/untitled2/tasks.txt");
+    fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
+    QTextStream out(&fOrg);
+    out << "Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3 << "\n";
+    fOrg.close();
 }
 
 
