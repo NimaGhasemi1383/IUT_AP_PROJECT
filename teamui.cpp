@@ -25,7 +25,7 @@ teamUi::teamUi(QWidget *parent)
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QFile FOrg("C:/Qt/untitled2/teams.txt");
+    QFile FOrg("C:/Qt/untitled2/projects.txt");
     FOrg.open(QIODevice::ReadOnly | QFile::Text);
     QTextStream in(&FOrg);
     while (!in.atEnd())
@@ -103,7 +103,7 @@ void teamUi::AddItem(QString item)
 {
     project[project.size() -1]->setText(item);
 
-    QFile fOrg("C:/Qt/untitled2/teams.txt");
+    QFile fOrg("C:/Qt/untitled2/projects.txt");
     fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
     QTextStream out(&fOrg);
     out << item << "\n";
@@ -157,6 +157,29 @@ void teamUi::DeleteItem(QString item2)
     }
     if(!test)
         QMessageBox::critical(this,"Error!","There isn't any project with this name.");
+
+    QFile fOrg("C:/Qt/untitled2/projects.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i] == item2)
+        {
+            lines.removeAt(i);
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
 
@@ -174,6 +197,29 @@ void teamUi::EditItem(QString item1, QString item2)
             project[i]->setText(item2);
         }
     }
+
+    QFile fOrg("C:/Qt/untitled2/projects.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i] == item1)
+        {
+            lines[i] = item2;
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
 
