@@ -32,27 +32,26 @@ void personUi::on_pushButton_add_clicked()
     addPerson * person_widget = new addPerson();
     person_widget->show();
     //QWidget::close();
-    if(num == 0)
-    {
-        add_person = new QPushButton*[100];
-        for(int i = 0; i < 100; i++)
-        {
-            add_person[i] = new QPushButton(this);
-            add_person[i]->setStyleSheet("QPushButton{"
-                                         "font-size: 10px;"
-                                         "color: white;"
-                                         "border-style: solid;"
-                                         "border-width:2px;"
-                                         "border-radius: 10px;"
-                                         "background-color: black;"
-                                         "border-color: yellow;"
-                                         "font: bold 15px}");
-        }
-    }
-    add_person[num]->resize(270,30);
-    add_person[num]->move(_move,_move2);
-    add_person[num]->show();
+
+    QPushButton* add_person = new QPushButton(this);
+
+    add_person->setStyleSheet("QPushButton{"
+                                 "font-size: 10px;"
+                                 "color: white;"
+                                 "border-style: solid;"
+                                 "border-width:2px;"
+                                 "border-radius: 10px;"
+                                 "background-color: black;"
+                                 "border-color: yellow;"
+                                 "font: bold 15px}");
+
+    person.append(add_person);
+
+    person[num]->resize(270,30);
+    person[num]->move(_move,_move2);
+    person[num]->show();
     num++;
+
     _move += 280;
     if (_move >=600){
         _move = 165;
@@ -65,7 +64,7 @@ void personUi::on_pushButton_add_clicked()
 
 void personUi::AddItem(QString item , QString item2)
 {
-    add_person[num -1]->setText("Name: " + item + "          Role: " + item2);
+    person[person.size() -1]->setText("Name: " + item + "          Role: " + item2);
 }
 
 
@@ -81,26 +80,34 @@ void personUi::on_pushButton_remove_clicked()
 
 void personUi::DeleteItem(QString item2)
 {
-    for(int i = 0; i < 100; i++)
+    int test = 0;
+
+    for(int i = 0; i < person.size(); i++)
     {
-        if(add_person[i]->text().contains(item2))
+        if(person[i]->text().contains(item2))
         {
-            delete(add_person[i]);
-            for(int j = i + 1; j < 100 ; j++)
+            delete(person[i]);
+            for(int j = i + 1; j < person.size() ; j++)
             {
-                if(add_person[j]->x() > 170)
+                if(person[j]->x() > 170)
                 {
-                    add_person[j]->move(add_person[j]->x() - 280, add_person[j]->y());
+                    person[j]->move(person[j]->x() - 280, person[j]->y());
                 }
                 else
                 {
-                    add_person[j]->move(445, add_person[j]->y() - 40);
+                    person[j]->move(445, person[j]->y() - 40);
                 }
             }
-            return;
+            test = 1;
+            _move -= 280;
+            if (_move >=600){
+                _move = 165;
+                _move2 -= 40;
+            }
         }
     }
-    QMessageBox::critical(this,"Error!","There isn't any person with this name.");
+    if(!test)
+        QMessageBox::critical(this,"Error!","There isn't any person with this name.");
 }
 
 
@@ -113,9 +120,9 @@ void personUi::on_pushButton_edit_clicked()
 
 void personUi::EditItem(QString item1, QString item2)
 {
-    for (int i=0 ; i<100 ; i++){
-        if(add_person[i]->text().contains(item1)){
-            add_person[i]->setText("Name: " + item1 + "          Role: " + item2);
+    for (int i=0 ; i < person.size(); i++){
+        if(person[i]->text().contains(item1)){
+            person[i]->setText("Name: " + item1 + "          Role: " + item2);
         }
     }
 }

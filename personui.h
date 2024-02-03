@@ -31,7 +31,7 @@ private slots:
 
 private:
     Ui::personUi *ui;
-    QPushButton **add_person;
+    QVector<QPushButton*>person;
     int num = 0;
     int _move = 165;
     int _move2 = 90;
