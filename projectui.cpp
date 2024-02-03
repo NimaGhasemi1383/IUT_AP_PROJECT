@@ -22,7 +22,7 @@ ProjectUi::ProjectUi(QWidget *parent)
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QFile FOrg("C:/Qt/untitled2/tasks.txt");
+    QFile FOrg("tasks.txt");
     FOrg.open(QIODevice::ReadOnly | QFile::Text);
     QTextStream in(&FOrg);
     while (!in.atEnd())
@@ -100,7 +100,7 @@ void ProjectUi::AddItem(QString item , QString item2 , QString item3)
 {
     task[task.size() -1]->setText("Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3);
 
-    QFile fOrg("C:/Qt/untitled2/tasks.txt");
+    QFile fOrg("tasks.txt");
     fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
     QTextStream out(&fOrg);
     out << "Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3 << "\n";
@@ -141,7 +141,7 @@ void ProjectUi::DeleteItem(QString item2)
         QMessageBox::critical(this,"Error!","There isn't any task with this name.");
 
 
-    QFile fOrg("C:/Qt/untitled2/tasks.txt");
+    QFile fOrg("tasks.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;
@@ -181,7 +181,7 @@ void ProjectUi::EditItem(QString item1, QString item2 , QString item3)
         }
     }
 
-    QFile fOrg("C:/Qt/untitled2/tasks.txt");
+    QFile fOrg("tasks.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;

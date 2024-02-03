@@ -81,8 +81,8 @@ void MainWindow::on_pushButton_SignIn_clicked()
     {
         QMessageBox::critical(this,"Erorr!","Please Enter Password.");
     }
-    else {    
-        QString str= "C:/Qt/untitled2/User.txt";
+    else {
+        QString str= "User.txt";
         QFile file(str);
 
         if (!file.open(QFile::ReadOnly | QFile::Text)){

@@ -49,7 +49,7 @@ void Data::GetAllPass(vector<QString> & new_vec){
 }
 
 void Data::Ofstream(){
-    QFile mFile("C:/Qt/untitled2/User.txt");
+    QFile mFile("User.txt");
     if(!mFile.open(QFile::WriteOnly | QFile::Text | QIODevice::Append)){
         return;
     }

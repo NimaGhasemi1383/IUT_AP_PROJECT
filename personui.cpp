@@ -23,7 +23,7 @@ personUi::personUi(QWidget *parent)
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QFile FOrg("C:/Qt/untitled2/persons.txt");
+    QFile FOrg("persons.txt");
     FOrg.open(QIODevice::ReadOnly | QFile::Text);
     QTextStream in(&FOrg);
     while (!in.atEnd())
@@ -107,7 +107,7 @@ void personUi::AddItem(QString item , QString item2)
 {
     person[person.size() -1]->setText("Name: " + item + "          Role: " + item2);
 
-    QFile fOrg("C:/Qt/untitled2/persons.txt");
+    QFile fOrg("persons.txt");
     fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
     QTextStream out(&fOrg);
     out << "Name: " + item + "          Role: " + item2 << "\n";
@@ -157,7 +157,7 @@ void personUi::DeleteItem(QString item2)
         QMessageBox::critical(this,"Error!","There isn't any person with this name.");
 
 
-    QFile fOrg("C:/Qt/untitled2/persons.txt");
+    QFile fOrg("persons.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;
@@ -198,7 +198,7 @@ void personUi::EditItem(QString item1, QString item2)
     }
 
 
-    QFile fOrg("C:/Qt/untitled2/persons.txt");
+    QFile fOrg("persons.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;

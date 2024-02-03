@@ -51,7 +51,7 @@ void ForgotPassword::on_pushButton_Back_clicked()
 
 void ForgotPassword::on_pushButton_Ok_clicked()
 {
-    QString str= "C:/Qt/untitled2/User.txt";
+    QString str= "User.txt";
     QFile file(str);
 
     if (!file.open(QFile::ReadOnly | QFile::Text)){

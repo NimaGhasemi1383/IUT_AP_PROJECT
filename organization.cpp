@@ -25,7 +25,7 @@ Organization::Organization(QWidget *parent)
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QFile FOrg("C:/Qt/untitled2/New Text Document.txt");
+    QFile FOrg("organizations.txt");
     FOrg.open(QIODevice::ReadOnly | QFile::Text);
     QTextStream in(&FOrg);
     while (!in.atEnd())
@@ -123,7 +123,7 @@ void Organization::AddItem(QString item)
     org[org.size() - 1]->setText(item);
     //n++;
 
-    QFile fOrg("C:/Qt/untitled2/New Text Document.txt");
+    QFile fOrg("organizations.txt");
     fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
     QTextStream out(&fOrg);
     out << item << "\n";
@@ -165,7 +165,7 @@ void Organization::DeleteItem(QString item2)
     }
 
 
-    QFile fOrg("C:/Qt/untitled2/New Text Document.txt");
+    QFile fOrg("organizations.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;
@@ -246,7 +246,7 @@ void Organization::EditItem(QString item1, QString item2)
         }
     }
 
-    QFile fOrg("C:/Qt/untitled2/New Text Document.txt");
+    QFile fOrg("organizations.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;

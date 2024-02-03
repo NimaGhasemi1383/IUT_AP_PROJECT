@@ -25,7 +25,7 @@ teamUi::teamUi(QWidget *parent)
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QFile FOrg("C:/Qt/untitled2/projects.txt");
+    QFile FOrg("projects.txt");
     FOrg.open(QIODevice::ReadOnly | QFile::Text);
     QTextStream in(&FOrg);
     while (!in.atEnd())
@@ -107,7 +107,7 @@ void teamUi::AddItem(QString item)
 {
     project[project.size() -1]->setText(item);
 
-    QFile fOrg("C:/Qt/untitled2/projects.txt");
+    QFile fOrg("projects.txt");
     fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
     QTextStream out(&fOrg);
     out << item << "\n";
@@ -162,7 +162,7 @@ void teamUi::DeleteItem(QString item2)
     if(!test)
         QMessageBox::critical(this,"Error!","There isn't any project with this name.");
 
-    QFile fOrg("C:/Qt/untitled2/projects.txt");
+    QFile fOrg("projects.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;
@@ -202,7 +202,7 @@ void teamUi::EditItem(QString item1, QString item2)
         }
     }
 
-    QFile fOrg("C:/Qt/untitled2/projects.txt");
+    QFile fOrg("projects.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;

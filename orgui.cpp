@@ -26,85 +26,87 @@ OrgUi::OrgUi(QWidget *parent)
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    QFile file("C:/Qt/untitled2/New Text Document.txt");
-    file.open(QIODevice::ReadOnly | QFile::Text);
-    QTextStream in(&file);
-    //while(!in.atEnd())
-    //{
+    // QFile file("organizations.txt");
+    // file.open(QIODevice::ReadOnly | QFile::Text);
+    // QTextStream in(&file);
+    // //while(!in.atEnd())
+    // //{
 
-        QString line = in.readLine();
-        QDir().mkdir(line);
-        QFile Org_file(line + "/file.txt");
-        Org_file.open(QIODevice::ReadOnly | QFile::Text);
-        QTextStream in2(&Org_file);
-        while (!in2.atEnd())
-        {
-            QPushButton *add_team = new QPushButton(this);
+    //     QString line = in.readLine();
+    //     QDir().mkdir(line);
+    //     QFile Org_file(line + "/file.txt");
+    //     Org_file.open(QIODevice::ReadOnly | QFile::Text);
+    //     QTextStream in2(&Org_file);
+    //     while (!in2.atEnd())
+    //     {
+    //         QPushButton *add_team = new QPushButton(this);
 
-            add_team->setText(in2.readLine());
+    //         add_team->setText(in2.readLine());
 
-            add_team->setCursor(Qt::OpenHandCursor);
+    //         add_team->setCursor(Qt::OpenHandCursor);
 
-            add_team->setStyleSheet("QPushButton{"
-                                   "font-size: 10px;"
-                                   "color: white;"
-                                   "border-style: solid;"
-                                   "border-width:2px;"
-                                   "border-radius: 10px;"
-                                   "background-color: black;"
-                                   "border-color: yellow;"
-                                   "font: bold 15px}");
+    //         add_team->setStyleSheet("QPushButton{"
+    //                                "font-size: 10px;"
+    //                                "color: white;"
+    //                                "border-style: solid;"
+    //                                "border-width:2px;"
+    //                                "border-radius: 10px;"
+    //                                "background-color: black;"
+    //                                "border-color: yellow;"
+    //                                "font: bold 15px}");
 
-            team.append(add_team);
+    //         team.append(add_team);
 
-            connect(add_team,SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
+    //         connect(add_team,SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
 
-            add_team->resize(92,36);
-            add_team->move(_move,_move2);
-            add_team->show();
-            _move += 100;
-            if (_move >=700){
-                _move = 165;
-                _move2 += 40;
-            }
-        }
-        Org_file.close();
-    //}
-    file.close();
-
-    // QFile FOrg("C:/Qt/untitled2/teams.txt");
-    // FOrg.open(QIODevice::ReadOnly | QFile::Text);
-    // QTextStream in(&FOrg);
-    // while (!in.atEnd())
-    // {
-    //     QPushButton *add_team = new QPushButton(this);
-
-    //     add_team->setText(in.readLine());
-
-    //     add_team->setStyleSheet("QPushButton{"
-    //                            "font-size: 10px;"
-    //                            "color: white;"
-    //                            "border-style: solid;"
-    //                            "border-width:2px;"
-    //                            "border-radius: 10px;"
-    //                            "background-color: black;"
-    //                            "border-color: yellow;"
-    //                            "font: bold 15px}");
-
-    //     team.append(add_team);
-
-    //     connect(add_team,SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
-
-    //     add_team->resize(92,36);
-    //     add_team->move(_move,_move2);
-    //     add_team->show();
-    //     _move += 100;
-    //     if (_move >=700){
-    //         _move = 165;
-    //         _move2 += 40;
+    //         add_team->resize(92,36);
+    //         add_team->move(_move,_move2);
+    //         add_team->show();
+    //         _move += 100;
+    //         if (_move >=700){
+    //             _move = 165;
+    //             _move2 += 40;
+    //         }
     //     }
-    // }
-    // FOrg.close();
+    //     Org_file.close();
+    // //}
+    // file.close();
+
+    QFile FOrg("teams.txt");
+    FOrg.open(QIODevice::ReadOnly | QFile::Text);
+    QTextStream in(&FOrg);
+    while (!in.atEnd())
+    {
+        QPushButton *add_team = new QPushButton(this);
+
+        add_team->setText(in.readLine());
+
+        add_team->setCursor(Qt::OpenHandCursor);
+
+        add_team->setStyleSheet("QPushButton{"
+                               "font-size: 10px;"
+                               "color: white;"
+                               "border-style: solid;"
+                               "border-width:2px;"
+                               "border-radius: 10px;"
+                               "background-color: black;"
+                               "border-color: yellow;"
+                               "font: bold 15px}");
+
+        team.append(add_team);
+
+        connect(add_team,SIGNAL(clicked()),this,SLOT(teamui_btn_2_clicked()));
+
+        add_team->resize(92,36);
+        add_team->move(_move,_move2);
+        add_team->show();
+        _move += 100;
+        if (_move >=700){
+            _move = 165;
+            _move2 += 40;
+        }
+    }
+    FOrg.close();
     //connect(org_widget,SIGNAL(ItemAdded(QString)),this,SLOT(AddName(QString)));
 }
 
@@ -125,12 +127,12 @@ void OrgUi::on_pushButton_add_2_clicked()
 
     add_team->setStyleSheet("QPushButton{"
                                "font-size: 10px;"
-                               "color: Black;"
+                               "color: white;"
                                "border-style: solid;"
                                "border-width:2px;"
                                "border-radius: 10px;"
-                               "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                               "border-color: black;"
+                               "background-color: black;"
+                               "border-color: yellow;"
                                "font: bold 15px}");
 
     team.append(add_team);
@@ -152,30 +154,30 @@ void OrgUi::AddItem(QString item)
 {
     team[team.size() -1]->setText(item);
 
-    QFile file("C:/Qt/untitled2/New Text Document.txt");
-    file.open(QIODevice::ReadOnly | QFile::Text);
-    QTextStream in(&file);
-    // while(!in.atEnd())
-    // {
-    QString line;
-    //for(int i = 0; i <= count; i++)
-        line = in.readLine();
-    //count++;
+    // QFile file("organizations.txt");
+    // file.open(QIODevice::ReadOnly | QFile::Text);
+    // QTextStream in(&file);
+    // // while(!in.atEnd())
+    // // {
+    // QString line;
+    // //for(int i = 0; i <= count; i++)
+    //     line = in.readLine();
+    // //count++;
 
-        QDir().mkdir(line);
-        QFile Org_file(line + "/file.txt");
-        Org_file.open(QIODevice::WriteOnly | QFile::Text | QIODevice::Append);
-        QTextStream out(&Org_file);
-        out << item << "\n";
-        Org_file.close();
-    }
+    //     QDir().mkdir(line);
+    //     QFile Org_file(line + "/file.txt");
+    //     Org_file.open(QIODevice::WriteOnly | QFile::Text | QIODevice::Append);
+    //     QTextStream out(&Org_file);
+    //     out << item << "\n";
+    //     Org_file.close();
+    //}
 
-    // QFile fOrg("C:/Qt/untitled2/teams.txt");
-    // fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
-    // QTextStream out(&fOrg);
-    // out << item << "\n";
-    // fOrg.close();
-//}
+    QFile fOrg("teams.txt");
+    fOrg.open(QIODevice::WriteOnly | QFile::Text |QIODevice::Append);
+    QTextStream out(&fOrg);
+    out << item << "\n";
+    fOrg.close();
+}
 
 void OrgUi::teamui_btn_2_clicked()
 {
@@ -225,7 +227,7 @@ void OrgUi::DeleteItem(QString item2)
         QMessageBox::critical(this,"Error!","There isn't any team with this name.");
 
 
-    QFile fOrg("C:/Qt/untitled2/teams.txt");
+    QFile fOrg("teams.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;
@@ -258,7 +260,7 @@ void OrgUi::EditItem(QString item1, QString item2)
     }
 
 
-    QFile fOrg("C:/Qt/untitled2/teams.txt");
+    QFile fOrg("teams.txt");
     fOrg.open(QIODevice::ReadWrite | QFile::Text);
     QTextStream in(&fOrg);
     QStringList lines;
