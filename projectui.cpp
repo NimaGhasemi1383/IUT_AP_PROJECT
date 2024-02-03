@@ -2,6 +2,7 @@
 #include "ui_projectui.h"
 #include "addtask.h"
 #include "deletetask.h"
+#include "edittask.h"
 #include <QFile>
 #include <QTextStream>
 #define ORG ":/Login/Login19.png"
@@ -158,5 +159,22 @@ void ProjectUi::DeleteItem(QString item2)
         out << line << "\n";
     }
     fOrg.close();
+}
+
+
+void ProjectUi::on_pushButton_edit_clicked()
+{
+    EditTask *edit_widget = new EditTask();
+    edit_widget->show();
+    connect(edit_widget,SIGNAL(ItemEdited(QString,QString,QString)),this,SLOT(EditItem(QString,QString,QString)));
+}
+
+void ProjectUi::EditItem(QString item1, QString item2 , QString item3)
+{
+    for (int i=0 ; i<task.size() ; i++){
+        if(task[i]->text().contains(item3)){
+            task[i]->setText("Name Of Task: " + item2 + "   Performer: " + item1 + "   Time: " + item3);
+        }
+    }
 }
 

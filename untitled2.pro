@@ -21,6 +21,7 @@ SOURCES += \
     editorg.cpp \
     editperson.cpp \
     editproject.cpp \
+    edittask.cpp \
     editteam.cpp \
     forgotpassword.cpp \
     inorg.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     editorg.h \
     editperson.h \
     editproject.h \
+    edittask.h \
     editteam.h \
     forgotpassword.h \
     inorg.h \
@@ -72,6 +74,7 @@ FORMS += \
     editorg.ui \
     editperson.ui \
     editproject.ui \
+    edittask.ui \
     editteam.ui \
     forgotpassword.ui \
     inorg.ui \

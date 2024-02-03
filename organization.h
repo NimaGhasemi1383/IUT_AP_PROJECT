@@ -37,7 +37,7 @@ private:
     Ui::Organization *ui;
 
     QVector<QPushButton*> org;
-    QVector<OrgUi*> vec_org;
+    //QVector<OrgUi*> vec_org;
     //OrgUi *orgui_widget = new OrgUi();
     int _move = 165;
     int _move2 = 90;

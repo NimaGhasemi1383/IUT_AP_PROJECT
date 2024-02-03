@@ -215,10 +215,10 @@ void Organization::orgui_btn_clicked()
     //QPushButton *golabi = qobject_cast<QPushButton *>(sender());
     //if(golabi){
     OrgUi *org_widget = new OrgUi();
-    //org_widget->show();
+    org_widget->show();
         //orgui_widget->setWindowTitle(QString::number(n));
-    vec_org.append(org_widget);
-    vec_org[n]->show();
+   // vec_org.append(org_widget);
+   // vec_org[n]->show();
     n++;
     //orgui_widget->show();
     //setFocus();
