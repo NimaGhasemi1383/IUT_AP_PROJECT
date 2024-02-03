@@ -34,6 +34,8 @@ teamUi::teamUi(QWidget *parent)
 
         add_project->setText(in.readLine());
 
+        add_project->setCursor(Qt::OpenHandCursor);
+
         add_project->setStyleSheet("QPushButton{"
                                "font-size: 10px;"
                                "color: white;"
@@ -72,6 +74,8 @@ void teamUi::on_pushButton_add_clicked()
     //QWidget::close();
 
     QPushButton* add_project = new QPushButton(this);
+
+    add_project->setCursor(Qt::OpenHandCursor);
 
     add_project->setStyleSheet("QPushButton{"
                                "font-size: 10px;"

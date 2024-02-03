@@ -43,6 +43,8 @@ OrgUi::OrgUi(QWidget *parent)
 
             add_team->setText(in2.readLine());
 
+            add_team->setCursor(Qt::OpenHandCursor);
+
             add_team->setStyleSheet("QPushButton{"
                                    "font-size: 10px;"
                                    "color: white;"
@@ -118,6 +120,8 @@ void OrgUi::on_pushButton_add_2_clicked()
     //QWidget::close();
 
     QPushButton* add_team = new QPushButton(this);
+
+    add_team->setCursor(Qt::OpenHandCursor);
 
     add_team->setStyleSheet("QPushButton{"
                                "font-size: 10px;"

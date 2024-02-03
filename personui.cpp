@@ -32,6 +32,8 @@ personUi::personUi(QWidget *parent)
 
         add_person->setText(in.readLine());
 
+        add_person->setCursor(Qt::OpenHandCursor);
+
         add_person->setStyleSheet("QPushButton{"
                                "font-size: 10px;"
                                "color: white;"
@@ -71,6 +73,8 @@ void personUi::on_pushButton_add_clicked()
     //QWidget::close();
 
     QPushButton* add_person = new QPushButton(this);
+
+    add_person->setCursor(Qt::OpenHandCursor);
 
     add_person->setStyleSheet("QPushButton{"
                                  "font-size: 10px;"
@@ -151,6 +155,30 @@ void personUi::DeleteItem(QString item2)
     }
     if(!test)
         QMessageBox::critical(this,"Error!","There isn't any person with this name.");
+
+
+    QFile fOrg("C:/Qt/untitled2/persons.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i].contains(item2))
+        {
+            lines.removeAt(i);
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
 

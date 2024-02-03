@@ -31,6 +31,8 @@ ProjectUi::ProjectUi(QWidget *parent)
 
         add_task->setText(in.readLine());
 
+        add_task->setCursor(Qt::OpenHandCursor);
+
         add_task->setStyleSheet("QPushButton{"
                                "font-size: 10px;"
                                "color: white;"
@@ -65,6 +67,8 @@ void ProjectUi::on_pushButton_add_clicked()
     //QWidget::close()
 
     QPushButton* add_task = new QPushButton(this);
+
+    add_task->setCursor(Qt::OpenHandCursor);
 
     add_task->setStyleSheet("QPushButton{"
                             "font-size: 10px;"

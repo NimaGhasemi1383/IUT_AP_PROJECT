@@ -34,6 +34,8 @@ Organization::Organization(QWidget *parent)
 
         add_org->setText(in.readLine());
 
+        add_org->setCursor(Qt::OpenHandCursor);
+
         add_org->setStyleSheet("QPushButton{"
                                "font-size: 10px;"
                                "color: white;"
@@ -73,6 +75,8 @@ void Organization::on_pushButton_add_clicked()
     //QWidget::close();
 
     QPushButton *add_org = new QPushButton(this);
+
+    add_org->setCursor(Qt::OpenHandCursor);
 
     org.push_back(add_org);
 
