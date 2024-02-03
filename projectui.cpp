@@ -29,28 +29,25 @@ void ProjectUi::on_pushButton_add_clicked()
 {
     addTask * task_widget = new addTask();
     task_widget->show();
-    //QWidget::close();
+    //QWidget::close()
 
-    if(num == 0)
-    {
-        add_task = new QPushButton*[100];
-        for(int i = 0; i < 100; i++)
-        {
-            add_task[i] = new QPushButton(this);
-            add_task[i]->setStyleSheet("QPushButton{"
-                                          "font-size: 10px;"
-                                          "color: Black;"
-                                          "border-style: solid;"
-                                          "border-width:2px;"
-                                          "border-radius: 10px;"
-                                          "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                                          "border-color: black;"
-                                          "font: bold 15px}");
-        }
-    }
-    add_task[num]->resize(540,30);
-    add_task[num]->move(_move,_move2);
-    add_task[num]->show();
+    QPushButton* add_task = new QPushButton(this);
+
+    add_task->setStyleSheet("QPushButton{"
+                            "font-size: 10px;"
+                            "color: white;"
+                            "border-style: solid;"
+                            "border-width:2px;"
+                            "border-radius: 10px;"
+                            "background-color: black;"
+                            "border-color: yellow;"
+                            "font: bold 15px}");
+
+    task.append(add_task);
+
+    add_task->resize(540,30);
+    add_task->move(_move,_move2);
+    add_task->show();
     num++;
     _move += 280;
     if (_move >=300){
@@ -64,7 +61,7 @@ void ProjectUi::on_pushButton_add_clicked()
 
 void ProjectUi::AddItem(QString item , QString item2 , QString item3)
 {
-    add_task[num -1]->setText("Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3);
+    task[task.size() -1]->setText("Name Of Task: " + item + "   Performer: " + item2 + "   Time: " + item3);
 }
 
 
@@ -78,22 +75,26 @@ void ProjectUi::on_pushButton_remove_clicked()
 
 void ProjectUi::DeleteItem(QString item2)
 {
-    for(int i = 0; i < 100; i++)
+    int test = 0;
+    for(int i = 0; i < task.size(); i++)
     {
-        if(add_task[i]->text().contains(item2))
+        if(task[i]->text().contains(item2))
         {
-            delete(add_task[i]);
-            for(int j = i + 1; j < 100 ; j++)
+            delete(task[i]);
+            for(int j = i + 1; j < task.size(); j++)
             {
-                if(add_task[j]->x() < 170)
+                if(task[j]->x() < 170)
                 {
-                    add_task[j]->move(165, add_task[j]->y() - 40);
+                    task[j]->move(165, task[j]->y() - 40);
                 }
             }
-            return;
+            test = 1;
+            task.erase(task.begin() + i);
+            _move2 -= 40;
         }
 
     }
-    QMessageBox::critical(this,"Error!","There isn't any task with this name.");
+    if(!test)
+        QMessageBox::critical(this,"Error!","There isn't any task with this name.");
 }
 

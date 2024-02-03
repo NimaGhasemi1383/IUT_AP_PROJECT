@@ -40,12 +40,12 @@ void personUi::on_pushButton_add_clicked()
             add_person[i] = new QPushButton(this);
             add_person[i]->setStyleSheet("QPushButton{"
                                          "font-size: 10px;"
-                                         "color: Black;"
+                                         "color: white;"
                                          "border-style: solid;"
                                          "border-width:2px;"
                                          "border-radius: 10px;"
-                                         "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                                         "border-color: black;"
+                                         "background-color: black;"
+                                         "border-color: yellow;"
                                          "font: bold 15px}");
         }
     }

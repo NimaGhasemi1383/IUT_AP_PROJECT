@@ -138,7 +138,7 @@ void teamUi::DeleteItem(QString item2)
             {
                 if(project[j]->x() > 170)
                 {
-                    project[j]->move(add_project[j]->x() - 100, project[j]->y());
+                    project[j]->move(project[j]->x() - 100, project[j]->y());
                 }
                 else
                 {

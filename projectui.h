@@ -27,7 +27,7 @@ private slots:
 
 private:
     Ui::ProjectUi *ui;
-    QPushButton **add_task;
+    QVector<QPushButton*>task;
     int num = 0;
     int _move = 165;
     int _move2 = 90;
