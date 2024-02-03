@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include "orgui.h"
+#include "outorg.h"
 
 namespace Ui {
 class Organization;
@@ -33,7 +35,10 @@ private slots:
 
 private:
     Ui::Organization *ui;
+
     QVector<QPushButton*> org;
+    QVector<OrgUi*> vec_org;
+    //OrgUi *orgui_widget = new OrgUi();
     int _move = 165;
     int _move2 = 90;
     int n = 0;

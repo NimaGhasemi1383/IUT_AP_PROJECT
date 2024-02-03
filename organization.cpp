@@ -36,12 +36,12 @@ Organization::Organization(QWidget *parent)
 
         add_org->setStyleSheet("QPushButton{"
                                "font-size: 10px;"
-                               "color: Black;"
+                               "color: white;"
                                "border-style: solid;"
                                "border-width:2px;"
                                "border-radius: 10px;"
-                               "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                               "border-color: black;"
+                               "background-color: black;"
+                               "border-color: yellow;"
                                "font: bold 15px}");
 
         org.append(add_org);
@@ -65,7 +65,7 @@ Organization::~Organization()
     delete ui;
 }
 
-
+int n =0;
 void Organization::on_pushButton_add_clicked()
 {
     inOrg * org_widget = new inOrg();
@@ -74,19 +74,26 @@ void Organization::on_pushButton_add_clicked()
 
     QPushButton *add_org = new QPushButton(this);
 
+    org.push_back(add_org);
+
     add_org->setStyleSheet("QPushButton{"
                               "font-size: 10px;"
-                              "color: Black;"
+                              "color: white;"
                               "border-style: solid;"
                               "border-width:2px;"
                               "border-radius: 10px;"
-                              "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));"
-                              "border-color: black;"
+                              "background-color: black;"
+                              "border-color: yellow;"
                               "font: bold 15px}");
 
-    org.append(add_org);
+    //connect(add_org,SIGNAL(clicked()),org_widget,SIGNAL(ItemAdded(QString)));
 
-    connect(add_org,SIGNAL(clicked()),this,SLOT(orgui_btn_clicked()));
+    connect(org_widget,SIGNAL(ItemAdded(QString)),this,SLOT(AddItem(QString)));
+
+    connect(org[n],SIGNAL(clicked()),this,SLOT(orgui_btn_clicked()));
+
+    //org.push_back(add_org);
+
 
     add_org->resize(92,36);
     add_org->move(_move,_move2);
@@ -96,8 +103,6 @@ void Organization::on_pushButton_add_clicked()
         _move = 165;
         _move2 += 40;
     }
-
-    connect(org_widget,SIGNAL(ItemAdded(QString)),this,SLOT(AddItem(QString)));
 }
 
 
@@ -207,8 +212,18 @@ void Organization::DeleteItem(QString item2)
 
 void Organization::orgui_btn_clicked()
 {
-    OrgUi *orgui_widget = new OrgUi();
-    orgui_widget->show();
+    //QPushButton *golabi = qobject_cast<QPushButton *>(sender());
+    //if(golabi){
+    OrgUi *org_widget = new OrgUi();
+    //org_widget->show();
+        //orgui_widget->setWindowTitle(QString::number(n));
+    vec_org.append(org_widget);
+    vec_org[n]->show();
+    n++;
+    //orgui_widget->show();
+    //setFocus();
+    //n++;
+    //}
 }
 
 

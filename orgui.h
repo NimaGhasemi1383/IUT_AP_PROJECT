@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include "inorg.h"
+#include "organization.h"
 
 namespace Ui {
 class OrgUi;
@@ -37,6 +39,7 @@ private:
     int num = 0;
     int _move = 165;
     int _move2 = 90;
+    int count=0;
 };
 
 #endif // ORGUI_H
