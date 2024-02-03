@@ -300,3 +300,24 @@ void OrgUi::on_pushButton_Back_clicked()
     QWidget::close();
 }
 
+
+void OrgUi::on_pushButton_Sort_clicked()
+{
+    QFile fOrg("teams.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    fOrg.close();
+
+    std::sort(lines.begin(), lines.end(), [](QString a, QString b) { return a < b; });
+
+    for(int i = 0; i < team.size(); i++)
+    {
+        team[i]->setText(lines[i]);
+    }
+}
+

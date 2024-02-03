@@ -31,6 +31,8 @@ private slots:
 
     void on_pushButton_Back_clicked();
 
+    void on_pushButton_Sort_clicked();
+
 private:
     Ui::personUi *ui;
     QVector<QPushButton*>person;

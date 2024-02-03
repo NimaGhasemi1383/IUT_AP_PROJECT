@@ -231,3 +231,9 @@ void personUi::on_pushButton_Back_clicked()
     QWidget::close();
 }
 
+
+void personUi::on_pushButton_Sort_clicked()
+{
+
+}
+

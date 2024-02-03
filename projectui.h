@@ -31,7 +31,9 @@ private slots:
 
     void on_pushButton_Back_clicked();
 
-private:
+     void on_pushButton_Sort_clicked();
+
+ private:
     Ui::ProjectUi *ui;
     QVector<QPushButton*>task;
     int num = 0;
