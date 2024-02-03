@@ -134,5 +134,29 @@ void ProjectUi::DeleteItem(QString item2)
     }
     if(!test)
         QMessageBox::critical(this,"Error!","There isn't any task with this name.");
+
+
+    QFile fOrg("C:/Qt/untitled2/tasks.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i].contains(item2));
+        {
+            lines.removeAt(i);
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
