@@ -196,5 +196,29 @@ void personUi::EditItem(QString item1, QString item2)
             person[i]->setText("Name: " + item1 + "          Role: " + item2);
         }
     }
+
+
+    QFile fOrg("C:/Qt/untitled2/persons.txt");
+    fOrg.open(QIODevice::ReadWrite | QFile::Text);
+    QTextStream in(&fOrg);
+    QStringList lines;
+    while(!in.atEnd())
+    {
+        lines.append(in.readLine());
+    }
+    for(int i = 0; i < lines.size(); i++)
+    {
+        if(lines[i].contains(item1))
+        {
+            lines[i] = "Name: " + item1 + "          Role: " + item2;
+        }
+    }
+    fOrg.resize(0);
+    QTextStream out(&fOrg);
+    foreach(const QString &line, lines)
+    {
+        out << line << "\n";
+    }
+    fOrg.close();
 }
 
