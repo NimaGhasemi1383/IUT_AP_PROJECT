@@ -36,6 +36,7 @@ private slots:
 private:
     Ui::teamUi *ui;
     QPushButton **add_project;
+    QVector<QPushButton*>project;
     int num = 0;
     int _move = 165;
     int _move2 = 90;
